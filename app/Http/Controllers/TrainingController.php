@@ -16,8 +16,8 @@ class TrainingController extends Controller
        
         // dd($data);
         if($request->ajax()){
-            $data = Training::select('trainings.id','trainings.jenis','trainings.tgl_sertif','trainings.keterangan', 'pegawais.nip')
-            ->join('pegawais', 'trainings.nip','=' ,'pegawais.nip')
+            $data = Training::select('trainings.id','trainings.jenis','trainings.tgl_sertif','trainings.keterangan', 'trainings.nip')
+            // ->join('pegawais', 'trainings.nip','=' ,'pegawais.nip')
             ->get();
             return DataTables::of($data)
                 ->addIndexColumn()
