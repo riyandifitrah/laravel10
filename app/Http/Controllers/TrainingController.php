@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Training;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
-
+use Alert;
 class TrainingController extends Controller
 {
     /**
@@ -19,14 +19,12 @@ class TrainingController extends Controller
             $data = Training::select('trainings.id','trainings.jenis','trainings.tgl_sertif','trainings.keterangan', 'pegawais.nip')
             ->join('pegawais', 'trainings.nip','=' ,'pegawais.nip')
             ->get();
-            
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
+                    // dd($row);
                     $actionBtn='
-                    <a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit 
-                    </a>
-                    <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Hapus 
+                    <a href="'.route('destroy.training', ['id' => $row->id]).'" class="delete btn btn-danger btn-sm">Hapus 
                     </a>
                     ';
                     return $actionBtn;
@@ -83,6 +81,14 @@ class TrainingController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $destroy = Training::findOrFail($id);
+        if ($destroy) {
+            $destroy->delete();
+            Alert::success('Success', 'Data Berhasil Dihapus!');
+            return redirect('/training-karyawan');
+        } else {
+            Alert::error('Error', 'Gagal menghapus data!');
+            return redirect('/training-karyawan');
+        }
     }
 }

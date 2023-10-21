@@ -8,30 +8,26 @@ use App\Models\Pkary;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
+use Alert;
 class PegawaiController extends Controller
 {
     public function index(Request $request)
     {
 
 
-        // $data = Pkary::with('pegawais')->find('np');
-        // ->select('pegawais.id','pkaries.jabatan','pkaries.nip', 'pkaries.nama_karyawan')
-        //         ->join('pkaries', 'pegawais.nip','=' ,'pkaries.nip')
+        // $data = DB::table('pegawais')
+        //         ->select('pegawais.id','pegawais.nip', 'pegawais.nama_karyawan', 'pegawais.jabatan')
         //         ->get();
-        // dd($data);
+        
         if ($request->ajax()) {
             $data = DB::table('pegawais')
-                ->select('pegawais.nip', 'pkaries.nama_karyawan', 'pkaries.jabatan')
-                ->join('pkaries', 'pegawais.nip', '=', 'pkaries.nip')
-                ->get();
-                $no=1;
+            ->select('pegawais.id','pegawais.nip', 'pegawais.nama_karyawan', 'pegawais.jabatan')
+            ->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $actionBtn = '
-                    <a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit 
-                    </a>
-                    <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Hapus 
+                    <a href="'.route('destroy.pegawai', ['id' => $row->id]).'" class="delete btn btn-danger btn-sm">Hapus 
                     </a>
                     ';
                     return $actionBtn;
@@ -88,6 +84,15 @@ class PegawaiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $destroy = Pegawai::findOrFail($id);
+        if ($destroy) {
+            $destroy->delete();
+            Alert::success('Success', 'Data Berhasil Dihapus!');
+            return redirect('/');
+        } else {
+            Alert::error('Error', 'Gagal menghapus data!');
+            return redirect('/');
+        }
+
     }
 }

@@ -2,6 +2,7 @@
 @include('layout.sitebar')
     <!--Container Main start-->
     <div class="container">
+        @include('sweetalert::alert')
         <div class="row my-5">
             <div class="col-lg-12 mt-5">
                 <h2>Data Training Karyawan</h2>
@@ -44,7 +45,15 @@
           url: '{!! url()->current() !!}',
         },
         columns: [
-                {data: 'id', name:'id'},
+                // {data: 'id', name:'id'},
+                {
+            data: null,
+            render: function (data, type, row, meta) {
+                
+                return meta.row + 1;
+            },
+            name: 'id',
+        },
                 {data: 'nip', name:'nip'},
                 {data: 'tgl_sertif', name:'tgl_sertif'},
                 {data: 'jenis', name:'jenis'},

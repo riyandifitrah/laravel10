@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 // });
 // Route::get("/", ([PegawaiController::class, 'index'])); 
 Route::get("/", [PegawaiController::class, 'index'])->name('karyawan.index'); 
+Route::get("/destroy-pegawai/{id}", [PegawaiController::class, 'destroy'])->name('destroy.pegawai'); 
+Route::get("/destroy/{id}", [TrainingController::class, 'destroy'])->name('destroy.training'); 
 Route::get("/training-karyawan", [TrainingController::class, 'index'])->name('training-karyawan.index'); 
 
 // Route::any("/assesment-karyawan", [AssKaryawanController::class, 'index'])->name('ass-karyawan.create_kw'); 
