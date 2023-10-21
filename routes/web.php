@@ -30,7 +30,7 @@ Route::get("/training-karyawan", [TrainingController::class, 'index'])->name('tr
 // Route::post("/post-tk", [AssKaryawanController::class, 'store_train_krw'])->name('store-train-krw'); 
 
 Route::any("/kw", [KWController::class, 'index'])->name('ass-karyawan.create_kw'); 
-Route::post("/post-tk", [KWController::class, 'store_train_krw'])->name('store-train-krw'); 
+Route::post("/post-mm", [KWController::class, 'store_train_krw'])->name('store-train-krw'); 
 
 Route::any("/assesment-jt", [AssJtConrtoller::class, 'index'])->name('ass-jt.create_pf'); 
 Route::post("/post-assesment-jt", [AssJtConrtoller::class, 'store_jenis_training'])->name('store-jt'); 

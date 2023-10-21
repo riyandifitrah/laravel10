@@ -15,17 +15,17 @@
                     </div>
                 @endif
                 <div class="card-header">
-                    Form Input Traininggg Karyawan
+                    Form Input Traininggg Karyawann
                 </div>
                 <div class="card-body">
                     @php
                     use Illuminate\Support\Facades\DB;
                     $j_training = DB::table('jtrains')                    
                         ->get();
-                    $nip = DB::table('pkaries')
+                    $nip = DB::table('pegawais')
                         ->get();
                 @endphp
-                    <form method="POST" action="/post-tk">
+                    <form method="POST" action="/post-mm">
                         @csrf
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">NIP</label>
