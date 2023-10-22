@@ -14,15 +14,15 @@ class PegawaiController extends Controller
     public function index(Request $request)
     {
 
-
-        // $data = DB::table('pegawais')
-        //         ->select('pegawais.id','pegawais.nip', 'pegawais.nama_karyawan', 'pegawais.jabatan')
-        //         ->get();
-        
         if ($request->ajax()) {
-            $data = DB::table('pegawais')
-            ->select('pegawais.id','pegawais.nip', 'pegawais.nama_karyawan', 'pegawais.jabatan')
+            // $data = DB::table('pegawais')
+            // ->select('pegawais.id','pegawais.nip', 'pegawais.nama_karyawan', 'pegawais.jabatan')
+            // ->get();
+            $data=Pegawai::select('pegawais.id','pegawais.nip', 'pegawais.nama_karyawan', 'trainings.jenis', 'trainings.tgl_sertif')
+            ->leftJoin('trainings', 'pegawais.id', '=', 'trainings.id')
+            ->leftJoin('jtrains', 'trainings.jenis', '=', 'jtrains.id')
             ->get();
+    
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {

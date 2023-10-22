@@ -32,7 +32,7 @@
                             <select name="nip" id="nip" class="form-control selectx">
                                 <option value="">Pilih NIP</option>
                                 @foreach ($nip as $n)
-                                    <option value="{{ $n->nip }}">{{ $n->nip }}</option>
+                                    <option value="{{ $n->nip }}">{{ $n->nip }} | {{$n->nama_karyawan}}</option>
                             @endforeach
                             </select>
                         </div>

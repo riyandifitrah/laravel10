@@ -17,7 +17,8 @@
                                 <th width="10">No.</th>
                                 <th>NIP</th>
                                 <th>Nama Karyawan</th>
-                                <th>Jabatan</th>
+                                <th>Jenis</th>
+                                <th>Tanggal Sertifikat</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -53,7 +54,9 @@
         },
                 {data: 'nip', name:'nip'},
                 {data: 'nama_karyawan', name:'nama_karyawan'},
-                {data: 'jabatan', name:'jabatan'},
+                {data: 'jenis', name:'jenis'},
+                {data: 'tgl_sertif', name:'tgl_sertif'},
+                // {data: 'jabatan', name:'jabatan'},
                 {data: 'action', name:'action', 
                 orderable:false,
                 searcable:false},
