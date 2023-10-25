@@ -32,7 +32,7 @@
                             <select name="nip" id="nip" class="form-control selectx">
                                 <option value="">Pilih NIP</option>
                                 @foreach ($nip as $n)
-                                    <option value="{{ $n->nip }}">{{ $n->nip }} | {{$n->nama_karyawan}}</option>
+                                    <option value="{{ $n->id }}">{{ $n->nip }} | {{$n->nama_karyawan}}</option>
                             @endforeach
                             </select>
                         </div>
@@ -42,7 +42,7 @@
                             <select name="jenis" id="jenis" class="form-control selectx">
                                 <option value="">Pilih Jenis Sertif</option>
                                 @foreach ($j_training as $j)
-                                    <option value="{{ $j->jenis }}">{{ $j->jenis }}</option>
+                                    <option value="{{ $j->id }}">{{ $j->jenis }}</option>
                             @endforeach
                             </select>
                         </div>
